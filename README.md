@@ -47,6 +47,11 @@ npm start
 ```
 
 ### 🖼️ Ảnh demo
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/17518ef4-ae65-4992-a705-ceba8c07fc9a" />
+<img width="500"  alt="image" src="https://github.com/user-attachments/assets/383b80fe-0cd3-4428-83e3-b49725ea5abe" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/c839203e-1f7a-4ce5-a4f1-bbfba901382e" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/316ea55c-033f-4c8b-aefd-928e44e1ecd9" />
+<img width="500" height="938" alt="image" src="https://github.com/user-attachments/assets/1f2645a2-55a0-4bac-9576-17d4e5a1c6c9" />
 
 ---
 
