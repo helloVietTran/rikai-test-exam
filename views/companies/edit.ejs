@@ -1,0 +1,25 @@
+<h1 class="mb-4 fs-2">Sửa thông tin công ty</h1>
+
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form  id="companyForm" method="POST" action="/companies/edit/<%= company.id %>">
+  <div class="mb-3">
+    <label for="name" class="form-label">Tên công ty</label>
+    <input type="text" class="form-control" id="name" name="name" value="<%= company.name %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="address" class="form-label">Địa chỉ</label>
+    <input type="text" class="form-control" id="address" name="address" value="<%= company.address %>">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Cập nhật</button>
+  <a href="/companies" class="btn btn-secondary">Hủy</a>
+</form>
+
+
+<div id="formError" class="alert alert-danger mt-4" style="display: none;"></div>
+
+<script src="/javascripts/company-form.js"></script>

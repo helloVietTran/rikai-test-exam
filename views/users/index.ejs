@@ -1,0 +1,91 @@
+<h1 class="mb-4 fs-2">Danh sách người dùng</h1>
+
+<div class="row align-items-center mb-4">
+  <!-- Nút Thêm -->
+  <div class="col-12 col-lg-4 mb-2 mb-lg-0">
+    <a href="/users/add" class="btn btn-primary">+ Thêm người dùng</a>
+  </div>
+
+  <!-- Form Tìm kiếm / Lọc -->
+  <div class="col-12 col-lg-8">
+    <form method="GET" class="row row-cols-lg-auto g-2 justify-content-end">
+      <div class="col">
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Tìm theo tên..."
+          value="<%= filter.name %>"
+        />
+      </div>
+      <div class="col">
+        <select name="company_id" class="form-select">
+          <option value="">-- Tất cả công ty --</option>
+          <% companies.forEach(c => { %>
+            <option value="<%= c.id %>" <%= c.id == filter.company_id ? 'selected' : '' %>>
+              <%= c.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col">
+        <button class="btn btn-success">Lọc</button>
+      </div>
+      <div class="col">
+        <a href="/users" class="btn btn-outline-secondary">Reset</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>ID</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Công ty</th>
+      <th>Thời gian tạo</th>
+      <th>Hành động</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(u => { %>
+    <tr>
+      <td><%= u.id %></td>
+      <td><%= u.name %></td>
+      <td><%= u.email %></td>
+      <td><%= u.company_name || '(Không có)' %></td>
+      <td><%= formatDateTime(u.created_at) %></td>
+      <td>
+        <a href="/users/edit/<%= u.id %>" class="btn btn-warning btn-sm">Sửa</a>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          data-id="<%= u.id %>"
+          onclick="handleDelete(this)"
+        >
+          Xóa
+        </button>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/delete-modal') %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const deleteModal = new bootstrap.Modal(
+    document.getElementById("deleteModal")
+  );
+  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+  function handleDelete(btn) {
+    const id = btn.getAttribute("data-id");
+    confirmDeleteBtn.href = `/users/delete/${id}`;
+    deleteModal.show();
+  }
+</script>
